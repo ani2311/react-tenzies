@@ -21,19 +21,31 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-family: 'Mukta', sans-serif;
 }
+
 .header h1{
   color: #fff;
   font-size: 5rem;
-  font-weight: 700;
+  font-weight: 400;
   margin: 20px 0;
   font-style: italic;
+  font-family: 'Rubik Glitch', cursive;
   text-shadow: 
     -2px 0 red,
-    0 -2px blue,
-    -2px -4px purple,
-    -4px -2px pink;
+    -2px -4px rgb(29, 97, 245),
+    0 -2px rgb(36, 241, 186),
+    -4px -2px rgb(215, 135, 50);
 }
+
+.header p {
+  color: #fff;
+  font-size: 2rem;
+  display: block;
+  padding: 10px 30px;
+  text-align: center;
+}
+
 .dice-face {
   height: 80px;
   width: 80px;
@@ -45,8 +57,14 @@
   box-shadow: 0 0 10px 10px rgba(178, 178, 178, 0.2);
   cursor: pointer;
 }
+
+.dice-face:hover {
+  background-color: rgb(159, 157, 188);
+
+}
+
 .dice-face.locked {
-  background-color: rgb(246, 176, 101);
+  background-color: rgb(29, 97, 245);
 }
 
 .dice-face p {
@@ -64,10 +82,15 @@
 
 button {
   padding: 20px 30px;
-  background:rgb(119, 15, 72);
+  background:rgb(243, 139, 196);
   font-size: 2rem;
   font-weight: 700;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+}
+
+button:hover {
+  background:rgb(243, 139, 196, .5);
+  color: rgb(243, 139, 196)
 }

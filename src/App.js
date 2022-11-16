@@ -61,6 +61,8 @@ function App() {
     <main className="App">
       <section className="header">
         <h1>Tenzies</h1>
+        <p>Roll until all dice are the same.
+          Click each die to freeze it as its current value between rolls.</p>
       </section>
       <section className="dice-pool">
       { 
@@ -72,7 +74,7 @@ function App() {
       </section>
       <section>
         {gameover? <button onClick={startGame}>Start New Game</button>: 
-          <button onClick={toastDice}>Toast</button>
+          <button onClick={toastDice}>Roll</button>
         }
       </section>
     </main>
