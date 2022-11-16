@@ -1,9 +1,9 @@
 export default function Dice(props) {
     return (
-        <div className={`dice-face ${props.locked?"locked":""}`}
-             onClick={() => props.lockDice(props.diceId)}
+        <div className={`dice-face ${props.die.isLocked?"locked":""}`}
+             onClick={() => props.lockDie(props.die.dieId)}
             >
-            <p>{props.value}</p>
+            <p>{props.die.value}</p>
         </div>
     )
 }
