@@ -7,9 +7,21 @@ import Confetti from "react-confetti";
 import Dice from './Dice';
 
 function App() {
-  const [tenzi, setTenzi] = useState(false)
+  const [tenzi, setTenzi] = useState({
+    complete: false,
+    roll: 0,
+    bestRoll: parseInt(localStorage.getItem('best-roll')) || 0,
+    newBestRoll: false
+  })
   const [dice, setDice] = useState(() => initialDice())
-
+  // const [roll, setRoll] = useState(0)
+  // const [newBestRoll, setNewBestRoll] = useState(false)
+  // const [bestRoll, setBestRoll] = useState(
+  //   () => localStorage.getItem('best-roll') || 0)
+  const bestRollStyle = {
+    color: tenzi.newBestRoll?"yellow":"#fff",
+    fontWeight: tenzi.newBestRoll?900:500
+  }
   function initialDice() {
     return [...Array(10)].map(createDice)
   }
@@ -20,10 +32,25 @@ function App() {
       "value": Math.ceil(Math.random()*6)
     }
   }
-
   function rollDice() {
-    if(tenzi) setDice(initialDice())
+    if(tenzi.complete) {
+      setDice(initialDice())
+      setTenzi(prevTenzi => {
+        return {
+          ...prevTenzi,
+          complete: false,
+          roll: 0,
+          newBestRoll: false
+        }
+      })
+    }
     else {
+      setTenzi(prevTenzi =>  {
+        return {
+          ...prevTenzi, 
+          roll: prevTenzi.roll + 1
+        }
+      })
       setDice(prevDice => {
           return prevDice.map(die => {
             return die.isLocked?
@@ -47,10 +74,28 @@ function App() {
   }
 
   useEffect(() => {
-    // maybe more intuitive
+    // may be more intuitive
     let firstValue = dice[0].value
     let allSameValue = dice.every(die => die.value === firstValue)
-    setTenzi(allSameValue)
+    if(allSameValue) {
+      if(!tenzi.bestRoll | (tenzi.bestRoll && tenzi.roll < tenzi.bestRoll)) {
+        localStorage.setItem('best-roll', tenzi.roll)
+        setTenzi(prevTenzi => {
+          return {
+            ...prevTenzi,
+            bestRoll: prevTenzi.roll,
+            newBestRoll: true
+          }
+        })
+      }
+      setTenzi(prevTenzi => {
+        return {
+          ...prevTenzi,
+          complete: true,
+        }
+      })
+    }
+
 
     //check dice
     // let gameoverFlag = true
@@ -65,7 +110,7 @@ function App() {
 
   return (
     <main className="App">
-      {tenzi && <Confetti />}
+      {tenzi.complete && <Confetti />}
       <section className="header">
         <h1>Tenzies</h1>
         <p>Roll until all dice are the same.
@@ -80,7 +125,13 @@ function App() {
       }
       </section>
       <section>
-        <button onClick={rollDice}>{tenzi? "Start New Game":"Roll"}</button>
+        <button onClick={rollDice}>{tenzi.complete?"Start New Game":"Roll"}</button>
+      </section>
+      <section className="roll-record">
+        <div>Current Roll Count: {tenzi.roll}</div>
+        <div style={bestRollStyle}>
+          Best Rolls: {tenzi.bestRoll===0?"N/A":tenzi.bestRoll}
+        </div>
       </section>
     </main>
   );

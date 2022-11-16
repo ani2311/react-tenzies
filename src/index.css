@@ -74,23 +74,40 @@
 
 .dice-pool {
   display: grid;
-  grid-template-columns: repeat(5, 120px);
-  grid-template-rows: repeat(2, 120px);
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 40px;
   /* grid-template: auto auto / repeat(5, 1fr);
   gap: 20px; */
 }
 
 button {
   padding: 20px 30px;
-  background:rgb(243, 139, 196);
+  background:rgb(243, 139, 196); 
   font-size: 2rem;
   font-weight: 700;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  margin: auto;
 }
 
 button:hover {
   background:rgb(243, 139, 196, .5);
-  color: rgb(243, 139, 196)
+  color: rgb(243, 139, 196);
 }
+
+.dice-face .one::after {
+  content: '';
+  background-color: black;
+  border-radius: 50px;
+}
+
+.roll-record {
+  color: white;
+  font-size: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
