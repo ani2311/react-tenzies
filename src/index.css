@@ -1,13 +1,73 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  list-style: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  background: #333;
+  padding: 5%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.App {
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  width: 800px;
+  height: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.header h1{
+  color: #fff;
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 20px 0;
+  font-style: italic;
+  text-shadow: 
+    -2px 0 red,
+    0 -2px blue,
+    -2px -4px purple,
+    -4px -2px pink;
+}
+.dice-face {
+  height: 80px;
+  width: 80px;
+  background-color: rgb(210, 210, 210);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 10px rgba(178, 178, 178, 0.2);
+  cursor: pointer;
+}
+.dice-face.locked {
+  background-color: rgb(246, 176, 101);
+}
+
+.dice-face p {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.dice-pool {
+  display: grid;
+  grid-template-columns: repeat(5, 120px);
+  grid-template-rows: repeat(2, 120px);
+  /* grid-template: auto auto / repeat(5, 1fr);
+  gap: 20px; */
+}
+
+button {
+  padding: 20px 30px;
+  background:rgb(119, 15, 72);
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }
