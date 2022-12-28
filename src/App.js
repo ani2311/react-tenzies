@@ -14,10 +14,6 @@ function App() {
     newBestRoll: false
   })
   const [dice, setDice] = useState(() => initialDice())
-  // const [roll, setRoll] = useState(0)
-  // const [newBestRoll, setNewBestRoll] = useState(false)
-  // const [bestRoll, setBestRoll] = useState(
-  //   () => localStorage.getItem('best-roll') || 0)
   const bestRollStyle = {
     color: tenzi.newBestRoll?"yellow":"#fff",
     fontWeight: tenzi.newBestRoll?900:500
@@ -74,7 +70,9 @@ function App() {
   }
 
   useEffect(() => {
-    // may be more intuitive
+    /*
+    end game check
+    */
     let firstValue = dice[0].value
     let allSameValue = dice.every(die => die.value === firstValue)
     if(allSameValue) {
@@ -95,18 +93,7 @@ function App() {
         }
       })
     }
-
-
-    //check dice
-    // let gameoverFlag = true
-    // for(let i = 0;i < dice.length - 1;i++) {
-    //   if(dice[i].value!==dice[i+1].value) {
-    //     gameoverFlag = false
-    //     break
-    //   }
-    // }
-    // setGameOver(gameoverFlag)
-  }, [dice])
+  }, [dice, tenzi.bestRoll, tenzi.roll])
 
   return (
     <main className="App">
